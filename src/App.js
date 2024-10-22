@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
-import NavBar from './NavBar';
-import ProductList from './ProductoList';
-import Cart from './Cart';
-import Container from '@mui/material/Container';
+import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme/theme';
+import Navbar from './NavBar';
+import Home from './Home';
+import Footer from './Footer';
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
-
-  const handleAddToCart = (product) => {
-    setCartItems([...cartItems, product]);
-  };
-
   return (
-    <div>
-      <NavBar />
-      <Container>
-        <ProductList onAddToCart={handleAddToCart} />
-        <Cart cartItems={cartItems} />
-      </Container>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Navbar />
+      <Home />
+      <Footer />
+    </ThemeProvider>
   );
 }
 

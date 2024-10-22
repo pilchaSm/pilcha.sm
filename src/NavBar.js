@@ -1,20 +1,19 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
-const NavBar = () => {
+const Navbar = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="primary">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Lo de Jim
+        <Typography variant="h6" style={{ flexGrow: 1 }}>
+          Pilcha SM
         </Typography>
-        <Button color="inherit">Carrito</Button>
+        <Button color="inherit">Inicio</Button>
+        <Button color="inherit">Productos</Button>
+        <Button color="inherit">Contacto</Button>
       </Toolbar>
     </AppBar>
   );
 };
 
-export default NavBar;
+export default Navbar;

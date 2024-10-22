@@ -1,31 +1,36 @@
+// src/components/ProductCard.js
 import React from 'react';
-import Button from '@mui/material/Button';
+import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 
-const Cart = ({ cartItems }) => {
-  const handleCheckout = () => {
-    const phoneNumber = '+5491124091923'; // Número de WhatsApp
-    const text = cartItems
-      .map((item) => `${item.name} - ${item.price}`)
-      .join('\n');
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
-  };
-
+const ProductCard = ({ product }) => {
   return (
-    <div>
-      <h2>Carrito</h2>
-      <ul>
-        {cartItems.map((item, index) => (
-          <li key={index}>{item.name} - {item.price}</li>
-        ))}
-      </ul>
-      {cartItems.length > 0 && (
-        <Button variant="contained" color="primary" onClick={handleCheckout}>
-          Enviar a WhatsApp
-        </Button>
-      )}
-    </div>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={product.image}
+        alt={product.name}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {product.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {product.description}
+        </Typography>
+        <Typography variant="h6" color="primary">
+          ${product.price}
+        </Typography>
+      </CardContent>
+      <Button
+        variant="contained"
+        color="secondary"
+        href={`https://wa.me/549123456789?text=Estoy interesado en el producto: ${product.name}`}
+      >
+        Comprar vía WhatsApp
+      </Button>
+    </Card>
   );
 };
 
-export default Cart;
+export default ProductCard;
