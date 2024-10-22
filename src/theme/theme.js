@@ -1,4 +1,3 @@
-
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -18,6 +17,30 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Roboto, sans-serif', // MUI usa Roboto por defecto
+    h5: {
+      fontSize: '1.2rem',
+      '@media (min-width:600px)': {
+        fontSize: '1.5rem',
+      },
+    },
+    body2: {
+      fontSize: '0.875rem',
+      '@media (min-width:600px)': {
+        fontSize: '1rem',
+      },
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '@media (max-width:600px)': {
+            fontSize: '0.8rem',
+            padding: '6px 12px',
+          },
+        },
+      },
+    },
   },
 });
 

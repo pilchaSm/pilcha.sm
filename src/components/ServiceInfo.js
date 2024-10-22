@@ -12,12 +12,12 @@ const ServiceInfo = () => {
   ];
 
   return (
-    <Box sx={{  py: 2 }}>
+    <Box sx={{ py: 2 }}>
       <Container maxWidth="lg">
         <Grid container spacing={2} justifyContent="center" alignItems="center">
           {services.map((service, index) => (
             <Grid item xs={12} sm={4} key={index}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: '100%' }}>
                 <Box sx={{ color: 'text.secondary', mb: 0.5 }}>
                   {React.cloneElement(service.icon, { fontSize: 'small' })}
                 </Box>

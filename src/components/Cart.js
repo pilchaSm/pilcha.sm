@@ -5,14 +5,18 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const ProductCard = ({ product, onAddToCart }) => {
   return (
-    <Card>
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <CardMedia
         component="img"
-        height="140"
+        sx={{
+          height: 0,
+          paddingTop: '56.25%', // 16:9 aspect ratio
+          objectFit: 'cover'
+        }}
         image={product.image}
         alt={product.name}
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
         </Typography>
@@ -22,17 +26,18 @@ const ProductCard = ({ product, onAddToCart }) => {
         <Typography variant="h6" color="text.primary" sx={{ mt: 2 }}>
           ${product.price}
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-          <Button 
-            variant="contained" 
-            color="primary" 
-            startIcon={<AddShoppingCartIcon />}
-            onClick={() => onAddToCart(product)}
-          >
-            Agregar al carrito
-          </Button>
-        </Box>
       </CardContent>
+      <Box sx={{ p: 2 }}>
+        <Button 
+          fullWidth
+          variant="contained" 
+          color="primary" 
+          startIcon={<AddShoppingCartIcon />}
+          onClick={() => onAddToCart(product)}
+        >
+          Agregar al carrito
+        </Button>
+      </Box>
     </Card>
   );
 };

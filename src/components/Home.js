@@ -28,8 +28,8 @@ const Home = () => {
   const displayedProducts = showAll ? products : products.slice(0, 3);
 
   return (
-    <Container>
-      <Grid container spacing={4}>
+    <Container maxWidth="lg">
+      <Grid container spacing={2}>
         {displayedProducts.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ProductCard product={product} />
@@ -42,6 +42,8 @@ const Home = () => {
             variant="contained" 
             color="primary" 
             onClick={() => setShowAll(true)}
+            fullWidth
+            sx={{ maxWidth: { xs: '100%', sm: '50%', md: '30%' } }}
           >
             Ver todos los productos
           </Button>
