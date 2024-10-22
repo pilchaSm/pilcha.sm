@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, IconButton, Box, Badge } from '@mui/material';
+import { AppBar, Toolbar, Button, IconButton, Box, Badge, Typography } from '@mui/material';
 import { ShoppingCart } from '@mui/icons-material';
 import logo from '../assets/logo.png';
 
@@ -19,30 +19,39 @@ const Navbar = ({ cartItems = [] }) => {
 
   return (
     <AppBar position="static" color="inherit" elevation={0}>
-      <Toolbar style={{ flexDirection: 'column', alignItems: 'center', padding: '10px 0' }}>
-        <Box style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '10px' }}>
+      <Toolbar style={{ justifyContent: 'space-between', padding: '10px 0' }}>
+        {/* Espacio vacío a la izquierda para equilibrar */}
+        <Box style={{ flex: 1 }} />
+        
+        {/* Logo en el centro */}
+        <Box style={{ display: 'flex', justifyContent: 'center', flex: 1 }}>
           <img
             src={logo}
             alt="Logo"
             style={{ height: '50%', cursor: 'pointer' }}
           />
-{          /*<Box style={{ display: 'flex', alignItems: 'center', marginLeft: '10px' }}>
-            <IconButton color="inherit" size="small">
+        </Box>
+        
+        {/* Carrito e inicio de sesión a la derecha */}
+        <Box style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', flex: 1 }}>
+          <IconButton color="inherit" onClick={handleCartClick} style={{ marginRight: '10px' }}>
+            <Badge badgeContent={cartItems.length} color="secondary">
               <ShoppingCart />
-              <Typography variant="subtitle2" color="textPrimary" style={{ marginLeft: 5 }}>
-                (0) $0
-              </Typography>
-            </IconButton>
-            <Button color="inherit" size="small">Iniciar sesion</Button>
-          </Box>*/}
+            </Badge>
+          </IconButton>
+          <Button color="inherit" variant="outlined" size="small">
+            Iniciar sesión
+          </Button>
         </Box>
-        <Box style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <Button color="inherit">Inicio</Button>
-          <Button color="inherit">Zapatillas</Button>
-          <Button color="inherit">Indumentaria</Button>
-          <Button color="inherit">Accesorios</Button>
-          <Button color="inherit">Contacto</Button>
-        </Box>
+      </Toolbar>
+      
+      {/* Botones de navegación */}
+      <Toolbar style={{ justifyContent: 'center' }}>
+        <Button color="inherit">Inicio</Button>
+        <Button color="inherit">Zapatillas</Button>
+        <Button color="inherit">Indumentaria</Button>
+        <Button color="inherit">Accesorios</Button>
+        <Button color="inherit">Contacto</Button>
       </Toolbar>
     </AppBar>
   );
