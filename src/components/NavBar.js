@@ -1,14 +1,26 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Box } from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Button, IconButton, Box, Badge } from '@mui/material';
 import { ShoppingCart } from '@mui/icons-material';
 import logo from '../assets/logo.png';
 
 
-const Navbar = () => {
+const Navbar = ({ cartItems = [] }) => {
+  const [showCart, setShowCart] = useState(false);
+
+  const handleCartClick = () => {
+    if (cartItems && cartItems.length > 0) {
+      const message = cartItems.map(item => `${item.name} - $${item.price}`).join('\n');
+      const whatsappUrl = `https://wa.me/+5491124091923?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    } else {
+      setShowCart(true);
+    }
+  };
+
   return (
     <AppBar position="static" color="inherit" elevation={0}>
-      <Toolbar style={{ justifyContent: 'center', position: 'relative' }}>
-        <Box style={{ display: 'flex', alignItems: 'center' }}>
+      <Toolbar style={{ flexDirection: 'column', alignItems: 'center', padding: '10px 0' }}>
+        <Box style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '10px' }}>
           <img
             src={logo}
             alt="Logo"
@@ -24,13 +36,13 @@ const Navbar = () => {
             <Button color="inherit" size="small">Iniciar sesion</Button>
           </Box>*/}
         </Box>
-      </Toolbar>
-      <Toolbar style={{ justifyContent: 'center' }}>
-        <Button color="inherit">Inicio</Button>
-        <Button color="inherit">Zapatillas</Button>
-        <Button color="inherit">Indumentaria</Button>
-        <Button color="inherit">Accesorios</Button>
-        <Button color="inherit">Contacto</Button>
+        <Box style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Button color="inherit">Inicio</Button>
+          <Button color="inherit">Zapatillas</Button>
+          <Button color="inherit">Indumentaria</Button>
+          <Button color="inherit">Accesorios</Button>
+          <Button color="inherit">Contacto</Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );

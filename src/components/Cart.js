@@ -1,10 +1,11 @@
 // src/components/ProductCard.js
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardMedia
         component="img"
         height="140"
@@ -18,17 +19,20 @@ const ProductCard = ({ product }) => {
         <Typography variant="body2" color="text.secondary">
           {product.description}
         </Typography>
-        <Typography variant="h6" color="primary">
+        <Typography variant="h6" color="text.primary" sx={{ mt: 2 }}>
           ${product.price}
         </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            startIcon={<AddShoppingCartIcon />}
+            onClick={() => onAddToCart(product)}
+          >
+            Agregar al carrito
+          </Button>
+        </Box>
       </CardContent>
-      <Button
-        variant="contained"
-        color="secondary"
-        href={`https://wa.me/549123456789?text=Estoy interesado en el producto: ${product.name}`}
-      >
-        Comprar vía WhatsApp
-      </Button>
     </Card>
   );
 };
