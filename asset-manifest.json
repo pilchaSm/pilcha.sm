@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/mi-tienda-react/static/css/main.e6c13ad2.css",
-    "main.js": "/mi-tienda-react/static/js/main.a555088a.js",
-    "static/js/453.d76a8c19.chunk.js": "/mi-tienda-react/static/js/453.d76a8c19.chunk.js",
-    "static/media/logo.png": "/mi-tienda-react/static/media/logo.4bba303f81a539d88bc3.png",
-    "index.html": "/mi-tienda-react/index.html",
-    "main.e6c13ad2.css.map": "/mi-tienda-react/static/css/main.e6c13ad2.css.map",
-    "main.a555088a.js.map": "/mi-tienda-react/static/js/main.a555088a.js.map",
-    "453.d76a8c19.chunk.js.map": "/mi-tienda-react/static/js/453.d76a8c19.chunk.js.map"
+    "main.css": "/pilcha.sm/static/css/main.e6c13ad2.css",
+    "main.js": "/pilcha.sm/static/js/main.12caa36b.js",
+    "static/js/453.d76a8c19.chunk.js": "/pilcha.sm/static/js/453.d76a8c19.chunk.js",
+    "static/media/logo.png": "/pilcha.sm/static/media/logo.4bba303f81a539d88bc3.png",
+    "index.html": "/pilcha.sm/index.html",
+    "main.e6c13ad2.css.map": "/pilcha.sm/static/css/main.e6c13ad2.css.map",
+    "main.12caa36b.js.map": "/pilcha.sm/static/js/main.12caa36b.js.map",
+    "453.d76a8c19.chunk.js.map": "/pilcha.sm/static/js/453.d76a8c19.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a555088a.js"
+    "static/js/main.12caa36b.js"
   ]
 }
