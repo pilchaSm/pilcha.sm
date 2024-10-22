@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 
 const Footer = () => {
   return (
-    <Box sx={{ bgcolor: 'primary.main', p: 2, mt: 4 }}>
+    <Box sx={{ bgcolor: '#080000', p: 1, mt: 1 }}>
       <Typography variant="body1" color="white" align="center">
         © 2024 Pilcha SM
       </Typography>
