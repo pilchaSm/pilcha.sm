@@ -10,21 +10,21 @@ import ServiceInfo from './components/ServiceInfo';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="lg" disableGutters>
-        <Box sx={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          minHeight: '100vh',
-          bgcolor: 'background.paper',
-        }}>
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        minHeight: '100vh',
+        bgcolor: 'background.paper',
+      }}>
+        <Container maxWidth="lg" disableGutters>
           <Navbar />
           <ServiceInfo />
           <Box sx={{ flexGrow: 1 }}>
             <Home />
           </Box>
-          <Footer />
-        </Box>
-      </Container>
+        </Container>
+        <Footer />
+      </Box>
     </ThemeProvider>
   );
 }
