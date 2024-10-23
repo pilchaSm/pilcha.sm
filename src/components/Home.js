@@ -7,19 +7,19 @@ const products = [
     name: 'Producto 1',
     description: 'Descripción del producto 1.',
     price: '1000',
-    image: 'https://via.placeholder.com/150', // imagen de ejemplo
+    image: 'https://www.digitalsport.com.ar/files/products/669fcd813e6bf-649941-500x500.jpg',
   },
   {
     name: 'Producto 2',
     description: 'Descripción del producto 2.',
     price: '1500',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://via.placeholder.com/500x500',
   },
   {
-    name: 'Producto 2',
-    description: 'Descripción del producto 2.',
+    name: 'Producto 3',
+    description: 'Descripción del producto 3.',
     price: '1500',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://via.placeholder.com/500x500',
   }
 ];
 
