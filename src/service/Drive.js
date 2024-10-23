@@ -1,7 +1,7 @@
 // googleDriveApi.js
 import axios from 'axios';
 
-const API_KEY = '513556553539-ph97r7uj5bfu573nhknke58m5rci2tjm.apps.googleusercontent.com'; 
+const API_KEY = 'AIzaSyCpRlk__EaoqGHLJ52MOIJ6RFB5F009dxA'; 
 const FOLDER_ID = '1xCa3kxKsSG6TwWLD5qi03nBj9_JCLmeQ'; 
 
 export const fetchImagesFromDrive = async () => {

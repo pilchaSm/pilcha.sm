@@ -1,40 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Container, Button, Box } from '@mui/material';
 import ProductCard from './Cart';
-import ServiceInfo from './ServiceInfo'; 
-
-const products = [
-  {
-    name: 'Producto 1',
-    description: 'Descripción del producto 1.',
-    price: '1000',
-    image: 'https://www.digitalsport.com.ar/files/products/669fcd813e6bf-649941-500x500.jpg',
-  },
-  {
-    name: 'Producto 2',
-    description: 'Descripción del producto 2.',
-    price: '1500',
-    image: 'https://via.placeholder.com/500x500',
-  },
-  {
-    name: 'Producto 3',
-    description: 'Descripción del producto 3.',
-    price: '1500',
-    image: 'https://via.placeholder.com/500x500',
-  }
-];
+import { fetchImagesFromDrive } from '../service/Drive'; 
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
   const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const images = await fetchImagesFromDrive();
+      setProducts(images); 
+    };
+
+    getProducts();
+  }, []);
+
   const displayedProducts = showAll ? products : products.slice(0, 3);
 
   return (
     <Container maxWidth="lg">
-      <ServiceInfo />
       <Grid container spacing={2}>
         {displayedProducts.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <ProductCard product={product} />
+            <ProductCard 
+              product={{
+                name: product.title, // Asegúrate de que tu objeto tenga este campo
+                description: `Talle: ${product.size} - Precio: $${product.price}`, // Ajusta según tus datos
+                image: product.imageUrl // Asegúrate de que tu objeto tenga este campo
+              }} 
+            />
           </Grid>
         ))}
       </Grid>
