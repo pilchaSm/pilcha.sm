@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Container, Button, Box } from '@mui/material';
 import ProductCard from './Cart';
+import ServiceInfo from './ServiceInfo'; 
 
 const products = [
   {
@@ -29,6 +30,7 @@ const Home = () => {
 
   return (
     <Container maxWidth="lg">
+      <ServiceInfo />
       <Grid container spacing={2}>
         {displayedProducts.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
