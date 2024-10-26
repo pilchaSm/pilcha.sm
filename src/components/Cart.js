@@ -11,20 +11,37 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductCard = ({ product, onAddToCart }) => {
   return (
-    <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+    <Card
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: 3, // Sombra para el card
+        transition: "transform 0.2s", // Transición suave
+        "&:hover": {
+          transform: "scale(1.05)", // Efecto hover
+        },
+      }}
+    >
       <CardMedia
         component="img"
         image={product.image}
         alt={product.name}
-        sx={{ height: 200, objectFit: "cover" }} // Ajusta la altura y el estilo de la imagen
+        sx={{
+          height: 200,
+          objectFit: "cover",
+          borderBottom: "1px solid #e0e0e0", // Línea divisoria
+        }} 
       />
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {product.description} {/* Puedes eliminar esto si no lo necesitas */}
-        </Typography>
+        {product.sizes && product.sizes.length > 0 && (
+          <Typography variant="body2" color="text.secondary">
+            Talles: {product.sizes.join(", ")}
+          </Typography>
+        )}
         <Typography variant="h6" color="text.primary" sx={{ mt: 2 }}>
           ${product.price}
         </Typography>

@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, Container, Button, Box } from "@mui/material";
 import ProductCard from "../components/Cart";
-import { fetchImagesFromCloudinary } from "../service/service";
+import productData from "../api/images.json";
 
 const ProductGallery = () => {
-  const [products, setProducts] = useState([]);
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const images = await fetchImagesFromCloudinary();
-        setProducts(images);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    getProducts();
-  }, []);
-
-  const displayedProducts = showAll ? products : products.slice(0, 3);
+  // Productos a mostrar
+  const displayedProducts = showAll ? productData : productData.slice(0, 3);
 
   return (
     <Container maxWidth="lg">
@@ -28,8 +16,10 @@ const ProductGallery = () => {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ProductCard
               product={{
-                name: product.name,
-                image: product.image,
+                name: product.nombre, 
+                image: product.imageUrl, 
+                price: product.precio,  
+                sizes: product.talles, 
               }}
             />
           </Grid>
