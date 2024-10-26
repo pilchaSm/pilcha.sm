@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
-import { Box, Container } from '@mui/material';
+import {  Container } from '@mui/material';
+import CssBaseline from "@mui/material/CssBaseline";
 import theme from './theme/theme';
-import Navbar from './components/NavBar';
-import Home from './components/Home';
+import NavBar from './components/NavBar';
+import Home from './pages/Home';
 //import Zapatillas from './components/Zapatillas'; 
 //import Indumentaria from './components/Indumentaria'; 
 //import Accesorios from './components/Accesorios'; 
@@ -13,19 +14,13 @@ import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <Box 
-          sx={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            minHeight: '100vh',
-            bgcolor: 'background.paper',
-          }}
-        >
-          <Container maxWidth="lg" disableGutters>
-            <Navbar />
-            <Box sx={{ flexGrow: 1 }}>
+      <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router basename="/">
+            <Container>
+              <NavBar />
+            </Container>
+            <Container style={{ padding: "30px" }}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/zapatillas" element={<Home />} />
@@ -33,12 +28,12 @@ const App = () => {
                 <Route path="/accesorios" element={<Home />} />
                 <Route path="/contacto" element={<Home />} />
               </Routes>
-            </Box>
-          </Container>
-          <Footer />
-        </Box>
-      </Router>
-    </ThemeProvider>
+            </Container>
+            <Container>
+              <Footer />
+            </Container>
+          </Router>
+      </ThemeProvider>
   );
 }
 

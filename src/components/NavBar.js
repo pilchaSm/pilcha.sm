@@ -4,7 +4,7 @@ import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
-const Navbar = ({ cartItems = [] }) => {
+const NavBar = ({ cartItems = [] }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -74,4 +74,4 @@ const Navbar = ({ cartItems = [] }) => {
   );
 };
 
-export default Navbar;
+export default NavBar;

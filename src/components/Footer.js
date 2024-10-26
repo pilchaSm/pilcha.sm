@@ -1,25 +1,24 @@
-// src/components/Footer.js
 import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
+import { Typography, Container } from '@mui/material';
 
 const Footer = () => {
   return (
-    <Box 
+    <Container 
       component="footer" 
-      sx={{ 
-        bgcolor: '#080000', 
+      maxWidth={false} 
+      sx={{
+        bgcolor: '#080000',
         width: '100%',
-        mt: 'auto'  // Esto empuja el footer hacia abajo
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        py: 1,
       }}
     >
-      <Container maxWidth={false}>
-        <Box sx={{ p: 1 }}>
-          <Typography variant="body1" color="white" align="center">
-            © 2024 Pilcha SM
-          </Typography>
-        </Box>
-      </Container>
-    </Box>
+      <Typography variant="body1" color="white" align="center">
+        © 2024 Pilcha SM
+      </Typography>
+    </Container>
   );
 };
 
