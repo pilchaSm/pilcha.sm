@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Button, IconButton, Box, Badge, Typography, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme } from '@mui/material';
 import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../image/logo.png';
 
 const NavBar = ({ cartItems = [] }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
