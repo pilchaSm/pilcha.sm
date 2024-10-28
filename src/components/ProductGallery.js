@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Container, Button, Box } from "@mui/material";
-import ProductCard from "../components/Cart"; // Asegúrate de que esta sea la ruta correcta
-import productData from "../api/images.json"; // Asegúrate de que esta sea la ruta correcta
+import ProductCard from "../components/Cart"; 
 
 const ProductGallery = () => {
+  const [productData, setProductData] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [loading, setLoading] = useState(true); 
 
-  // const displayedProducts = showAll ? productData : productData.slice(0, 3);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://pilcha-sm-backend.vercel.app/api/images');
+        if (!response.ok) {
+          throw new Error('Error al obtener los productos');
+        }
+        const data = await response.json();
+        setProductData(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchProducts();
+  }, []); 
+
+  if (loading) {
+    return <div>Cargando...</div>; 
+  }
 
   return (
     <Container maxWidth="lg">
@@ -15,10 +37,8 @@ const ProductGallery = () => {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ProductCard
               product={{
-                name: product.name, // Toma el nombre de la imagen
-                url: product.url, // Asegúrate de que esta sea la URL correcta
-                price: product.id, // Asegúrate de que esta propiedad esté en el JSON
-                sizes: product.talles, // Asegúrate de que esta propiedad esté en el JSON
+                name: product.public_id.split('-')[0], 
+                url: product.url,
               }}
             />
           </Grid>
