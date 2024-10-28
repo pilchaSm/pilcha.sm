@@ -15,11 +15,11 @@ const ProductGallery = ({onAddToCart, limit, category}) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://pilcha-sm-backend.vercel.app/api/images");
+        const response = await fetch(process.env.APP_ID);
         const data = await response.json();
 
         const parsedProducts = data.map(product => parseProductInfo(product?.public_id, product?.url));
-      console.log(parsedProducts)
+
         const filtered = category !== "productos"
           ? parsedProducts.filter(product => product.category === category)
           : parsedProducts;

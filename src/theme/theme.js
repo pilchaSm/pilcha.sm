@@ -3,20 +3,20 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#f5280c', // Color similar al del sitio
+      main: '#f5280c', 
     },
     secondary: {
       main: '#f5280c',
     },
     background: {
-      default: '#f7f7f7', // Fondo claro
+      default: '#f7f7f7', 
     },
     text: {
-      primary: '#080000', // Color del texto
+      primary: '#080000', 
     },
   },
   typography: {
-    fontFamily: 'Roboto, sans-serif', // MUI usa Roboto por defecto
+    fontFamily: 'Roboto, sans-serif',     
     h5: {
       fontSize: '1.2rem',
       '@media (min-width:600px)': {

@@ -1,4 +1,3 @@
-// ImageGallery.js
 import React, { useEffect, useState } from 'react';
 import { fetchImagesFromDrive } from './service/Drive';
 import { Grid, Container } from '@mui/material';
@@ -16,7 +15,6 @@ const ImageGallery = () => {
 
     loadImages();
   }, []);
-  console.log(images);
 
   if (loading) {
     return <div>Cargando imágenes...</div>;

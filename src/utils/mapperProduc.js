@@ -8,7 +8,7 @@ const getCategoryFromName = (name) => {
     } else if (name.toLowerCase().includes('accesorios')) {
       category = 'accesorios';
     } else {
-      category = 'otros'; // Opcional: puedes usar 'otros' si ninguna palabra coincide
+      category = 'otros'; 
     }
   
     return category;
