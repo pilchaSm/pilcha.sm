@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Container, Button, Box } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import ProductCard from "../components/Cart"; 
 import { parseProductInfo } from "../utils/mapperProduc";
 
-const ProductGallery = ({onAddToCart}) => {
+const ProductGallery = ({onAddToCart, limit, category}) => {
   const [products, setProducts] = useState([]);
-  const [showAll, setShowAll] = useState(false);
   const [cart, setCart] = useState([]);
 
   const handleAddToCart = (product) => {
     onAddToCart(product);
     setCart((prevCart) => [...prevCart, product]);
-    console.log("Producto agregado al carrito:", product);
   };
 
   useEffect(() => {
@@ -20,15 +18,23 @@ const ProductGallery = ({onAddToCart}) => {
         const response = await fetch("https://pilcha-sm-backend.vercel.app/api/images");
         const data = await response.json();
 
-        const parsedProducts = data.map(product => parseProductInfo(product?.public_id,product?.url)); 
-        setProducts(parsedProducts);
+        const parsedProducts = data.map(product => parseProductInfo(product?.public_id, product?.url));
+      
+        const filtered = category !== "productos"
+          ? parsedProducts.filter(product => product.category === category)
+          : parsedProducts;
+  
+        const limitedProducts = limit ? filtered.slice(0, limit) : filtered;
+  
+        setProducts(limitedProducts);
+        console.log(limitedProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [category, limit]);
 
 
   return (
@@ -49,19 +55,6 @@ const ProductGallery = ({onAddToCart}) => {
           </Grid>
         ))}
       </Grid>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-        {!showAll && (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setShowAll(true)}
-            fullWidth
-            sx={{ maxWidth: { xs: "100%", sm: "50%", md: "30%" } }}
-          >
-            Ver todos los productos
-          </Button>
-        )}
-      </Box>
     </Container>
   );
 };
