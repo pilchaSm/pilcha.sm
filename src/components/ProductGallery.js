@@ -19,7 +19,7 @@ const ProductGallery = ({onAddToCart, limit, category}) => {
         const data = await response.json();
 
         const parsedProducts = data.map(product => parseProductInfo(product?.public_id, product?.url));
-      
+      console.log(parsedProducts)
         const filtered = category !== "productos"
           ? parsedProducts.filter(product => product.category === category)
           : parsedProducts;

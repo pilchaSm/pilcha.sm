@@ -5,6 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 const CartDrawer = ({ cartItems, open, onClose, removeFromCart }) => {
 
   const handleCheckout = () => {
+
     const productDetails = cartItems.map(item => {
       return `*${item.name}* - Precio: $${item.price} - Talle: ${item.selectedSize}`;
     }).join('\n');
