@@ -1,11 +1,11 @@
 import React from "react";
 import ProductGallery from "../components/ProductGallery";
 
-const Home = () => {
+const Home = ({ onAddToCart }) => {
 
   return (
     <div>
-      <ProductGallery />
+      <ProductGallery onAddToCart={onAddToCart} />
     </div>
   );
 };

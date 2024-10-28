@@ -6,11 +6,17 @@ import {
   Typography,
   Button,
   Box,
+  Chip,
 } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductCard = ({ product, onAddToCart }) => {
   const [imgError, setImgError] = useState(false);
+  const [selectedSize, setSelectedSize] = useState('');
+
+  const handleChipClick = (size) => {
+    setSelectedSize(size === selectedSize ? '' : size);
+  };
 
   return (
     <Card
@@ -41,9 +47,18 @@ const ProductCard = ({ product, onAddToCart }) => {
           {product.name}
         </Typography>
         {product.sizes && product.sizes.length > 0 && (
-          <Typography variant="body2" color="text.secondary">
-            Talles: {product.sizes.join(", ")}
-          </Typography>
+          <Box sx={{ mb: 2 }}>
+            {product.sizes.map((size) => (
+              <Chip
+                key={size}
+                label={size}
+                onClick={() => handleChipClick(size)}
+                variant={selectedSize === size ? "filled" : "outlined"}
+                color={selectedSize === size ? "primary" : "default"}
+                sx={{ mr: 1, mb: 1 }} // Espaciado entre chips
+              />
+            ))}
+          </Box>
         )}
         <Typography variant="h6" color="text.primary" sx={{ mt: 2 }}>
           ${product.price}
@@ -55,7 +70,8 @@ const ProductCard = ({ product, onAddToCart }) => {
           variant="contained"
           color="primary"
           startIcon={<AddShoppingCartIcon />}
-          onClick={() => onAddToCart(product)}
+          onClick={() => onAddToCart({ ...product, selectedSize })}
+          disabled={!selectedSize} // Deshabilitar si no hay talla seleccionada
         >
           Agregar al carrito
         </Button>

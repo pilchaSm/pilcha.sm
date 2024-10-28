@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { Container } from "@mui/material";
@@ -13,20 +13,27 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 
 const App = () => {
+
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleAddToCart = (product) => {
+    setCartItems((prevItems) => [...prevItems, product]);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router basename="/pilcha.sm">
         <Container>
-          <NavBar />
+        <NavBar cartItems={cartItems} />
         </Container>
         <Container style={{ padding: "30px" }}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/zapatillas" element={<Home />} />
-            <Route path="/indumentaria" element={<Home />} />
-            <Route path="/accesorios" element={<Home />} />
-            <Route path="/contacto" element={<Home />} />
+          <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+            <Route path="/zapatillas" element={<Home onAddToCart={handleAddToCart} />} />
+            <Route path="/indumentaria" element={<Home onAddToCart={handleAddToCart} />} />
+            <Route path="/accesorios" element={<Home onAddToCart={handleAddToCart} />} />
+            <Route path="/contacto" element={<Home onAddToCart={handleAddToCart} />} />
           </Routes>
         </Container>
         <Container>

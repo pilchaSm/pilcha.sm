@@ -2,9 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Grid, Container, Button, Box } from "@mui/material";
 import ProductCard from "../components/Cart"; 
 import { parseProductInfo } from "../utils/mapperProduc";
-const ProductGallery = () => {
+
+const ProductGallery = ({onAddToCart}) => {
   const [products, setProducts] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [cart, setCart] = useState([]);
+
+  const handleAddToCart = (product) => {
+    onAddToCart(product);
+    setCart((prevCart) => [...prevCart, product]);
+    console.log("Producto agregado al carrito:", product);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,6 +44,7 @@ const ProductGallery = () => {
                 sizes: product?.sizes,
                 category: product?.category,
               }}
+              onAddToCart={handleAddToCart}
             />
           </Grid>
         ))}
