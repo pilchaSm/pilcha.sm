@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { Grid, Container, Button, Box } from "@mui/material";
-import ProductCard from "../components/Cart";
-import productData from "../api/images.json";
+import ProductCard from "../components/Cart"; // Asegúrate de que esta sea la ruta correcta
+import productData from "../api/images.json"; // Asegúrate de que esta sea la ruta correcta
 
 const ProductGallery = () => {
   const [showAll, setShowAll] = useState(false);
 
-  // Productos a mostrar
-  const displayedProducts = showAll ? productData : productData.slice(0, 3);
+  // const displayedProducts = showAll ? productData : productData.slice(0, 3);
 
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2}>
-        {displayedProducts.map((product, index) => (
+        {productData.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ProductCard
               product={{
-                name: product.nombre, 
-                image: product.imageUrl, 
-                price: product.precio,  
-                sizes: product.talles, 
+                name: product.name, // Toma el nombre de la imagen
+                url: product.url, // Asegúrate de que esta sea la URL correcta
+                price: product.id, // Asegúrate de que esta propiedad esté en el JSON
+                sizes: product.talles, // Asegúrate de que esta propiedad esté en el JSON
               }}
             />
           </Grid>

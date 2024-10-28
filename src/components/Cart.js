@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -10,28 +10,31 @@ import {
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductCard = ({ product, onAddToCart }) => {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <Card
       sx={{
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        boxShadow: 3, // Sombra para el card
-        transition: "transform 0.2s", // Transición suave
+        boxShadow: 3,
+        transition: "transform 0.2s",
         "&:hover": {
-          transform: "scale(1.05)", // Efecto hover
+          transform: "scale(1.05)",
         },
       }}
     >
       <CardMedia
         component="img"
-        image={product.image}
+        image={imgError ? `../image/logo.png` : product.url}
         alt={product.name}
+        onError={() => setImgError(true)}
         sx={{
           height: 200,
           objectFit: "cover",
-          borderBottom: "1px solid #e0e0e0", // Línea divisoria
-        }} 
+          borderBottom: "1px solid #e0e0e0",
+        }}
       />
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography gutterBottom variant="h5" component="div">
