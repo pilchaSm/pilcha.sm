@@ -7,10 +7,6 @@ import theme from "./theme/theme";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
-//import Zapatillas from './components/Zapatillas';
-//import Indumentaria from './components/Indumentaria';
-//import Accesorios from './components/Accesorios';
-//import Contacto from './components/Contacto';
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -21,12 +17,17 @@ const App = () => {
     setCartItems((prevItems) => [...prevItems, product]);
   };
 
+  const removeFromCart = (index) => {
+    const newCartItems = cartItems.filter((_, i) => i !== index);
+    setCartItems(newCartItems);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router basename="/pilcha.sm">
         <Container>
-        <NavBar cartItems={cartItems} />
+        <NavBar cartItems={cartItems} removeFromCart={removeFromCart} />
         </Container>
         <Container style={{ padding: "30px", marginBottom: "50px" }}>
           <Routes>

@@ -6,7 +6,7 @@ import NavMenu from './NavMenu';
 import CartDrawer from './CartDrawer';
 import logo from '../image/logo.png';
 
-const NavBar = ({ cartItems = [] }) => {
+const NavBar = ({ cartItems = [], removeFromCart }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const theme = useTheme();
@@ -34,15 +34,20 @@ const NavBar = ({ cartItems = [] }) => {
               <MenuIcon />
             </IconButton>
           )}
-          <NavMenu isMobile={isMobile} toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
+          <NavMenu isMobile={isMobile} toggleDrawer={toggleDrawer} />
           <IconButton color="inherit" onClick={toggleCartDrawer(true)}>
-            <Badge badgeContent={cartItems.length} color="secondary" sx={{ marginLeft: '5px' }}>
+            <Badge badgeContent={cartItems.length} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
-      <CartDrawer cartItems={cartItems} open={cartDrawerOpen} onClose={toggleCartDrawer(false)} />
+      <CartDrawer 
+        cartItems={cartItems} 
+        open={cartDrawerOpen} 
+        onClose={toggleCartDrawer(false)} 
+        removeFromCart={removeFromCart} 
+      />
     </>
   );
 };

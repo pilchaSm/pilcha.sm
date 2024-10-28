@@ -27,7 +27,6 @@ const ProductGallery = ({onAddToCart, limit, category}) => {
         const limitedProducts = limit ? filtered.slice(0, limit) : filtered;
   
         setProducts(limitedProducts);
-        console.log(limitedProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
