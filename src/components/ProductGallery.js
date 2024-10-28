@@ -1,44 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Container, Button, Box } from "@mui/material";
 import ProductCard from "../components/Cart"; 
-
+import { parseProductInfo } from "../utils/mapperProduc";
 const ProductGallery = () => {
-  const [productData, setProductData] = useState([]);
+  const [products, setProducts] = useState([]);
   const [showAll, setShowAll] = useState(false);
-  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://pilcha-sm-backend.vercel.app/api/images');
-        if (!response.ok) {
-          throw new Error('Error al obtener los productos');
-        }
+        const response = await fetch("https://pilcha-sm-backend.vercel.app/api/images");
         const data = await response.json();
-        setProductData(data);
+
+        const parsedProducts = data.map(product => parseProductInfo(product?.public_id,product?.url)); 
+        setProducts(parsedProducts);
       } catch (error) {
-        console.error('Error fetching products:', error);
-      } finally {
-        setLoading(false); 
+        console.error("Error fetching products:", error);
       }
     };
 
     fetchProducts();
-  }, []); 
+  }, []);
 
-  if (loading) {
-    return <div>Cargando...</div>; 
-  }
 
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2}>
-        {productData.map((product, index) => (
+        {products.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ProductCard
               product={{
-                name: product.public_id.split('-')[0], 
-                url: product.url,
+                name: product?.name,
+                url: product?.url,
+                price: product?.price,
+                sizes: product?.sizes,
+                category: product?.category,
               }}
             />
           </Grid>
