@@ -11,7 +11,7 @@ const CartDrawer = ({ cartItems, open, onClose, removeFromCart }) => {
     }).join('\n');
 
     const whatsappMessage = `Hola! Quiero comprar los siguientes productos:\n\n${productDetails}`;
-    const whatsappNumber = process.env.WPP_NUMBER; 
+    const whatsappNumber = process.env.REACT_APP_WPP_NUMBER; 
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
 

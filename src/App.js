@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Footer from "./components/Footer";
-
+import Contact from "./pages/Contacto";
 const App = () => {
 
   const [cartItems, setCartItems] = useState([]);
@@ -36,7 +36,7 @@ const App = () => {
             <Route path="/zapatillas" element={<Product onAddToCart={handleAddToCart} category="zapatillas"/>} />
             <Route path="/indumentaria" element={<Product onAddToCart={handleAddToCart} category="indumentaria"/>} />
             <Route path="/accesorios" element={<Product onAddToCart={handleAddToCart} category="accesorios"/>} />
-            <Route path="/contacto" element={<Home onAddToCart={handleAddToCart} />} />
+            <Route path="/contacto" element={<Contact/>} />
           </Routes>
         </Container>
         <Container>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Container } from "@mui/material";
 import ProductCard from "../components/Cart"; 
-import { parseProductInfo } from "../utils/mapperProduc";
-
+import { fetchProducts } from "../service/service";
 const ProductGallery = ({onAddToCart, limit, category}) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -12,27 +11,17 @@ const ProductGallery = ({onAddToCart, limit, category}) => {
     setCart((prevCart) => [...prevCart, product]);
   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
+  useEffect(() => { 
+    const getProducts = async () => {
       try {
-        const response = await fetch(process.env.APP_ID);
-        const data = await response.json();
-
-        const parsedProducts = data.map(product => parseProductInfo(product?.public_id, product?.url));
-
-        const filtered = category !== "productos"
-          ? parsedProducts.filter(product => product.category === category)
-          : parsedProducts;
-  
-        const limitedProducts = limit ? filtered.slice(0, limit) : filtered;
-  
+        const limitedProducts = await fetchProducts(category, limit);
         setProducts(limitedProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
 
-    fetchProducts();
+    getProducts();
   }, [category, limit]);
 
 
