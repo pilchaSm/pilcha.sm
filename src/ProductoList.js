@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+// ImageGallery.js
+import React, { useEffect, useState } from 'react';
+import { fetchImagesFromDrive } from './service/Drive';
+import { Grid, Container } from '@mui/material';
 
-const products = [
-  { id: 1, name: 'Producto 1', price: '$100' },
-  { id: 2, name: 'Producto 2', price: '$150' },
-  { id: 3, name: 'Producto 3', price: '$200' },
-];
+const ImageGallery = () => {
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const ProductList = ({ onAddToCart }) => {
+  useEffect(() => {
+    const loadImages = async () => {
+      const fetchedImages = await fetchImagesFromDrive();
+      setImages(fetchedImages);
+      setLoading(false);
+    };
+
+    loadImages();
+  }, []);
+  console.log(images);
+
+  if (loading) {
+    return <div>Cargando imágenes...</div>;
+  }
+
   return (
-    <Grid container spacing={3}>
-      {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} key={product.id}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5">{product.name}</Typography>
-              <Typography>{product.price}</Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" onClick={() => onAddToCart(product)}>
-                Agregar al carrito
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
+    <Container maxWidth="lg">
+      <Grid container spacing={2}>
+        {images.map((image) => (
+          <Grid item xs={12} sm={6} md={4} key={image.id}>
+            <div>
+              <h4>{image.name}</h4>
+              <img src={image.webContentLink} alt={image.name} style={{ width: '100%' }} />
+            </div>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 
-export default ProductList;
+export default ImageGallery;
