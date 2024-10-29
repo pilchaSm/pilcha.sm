@@ -32,11 +32,10 @@ const App = () => {
         <Container style={{ padding: "30px", marginBottom: "50px" }}>
           <Routes>
           <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
-          <Route path="/productos" element={<Product onAddToCart={handleAddToCart} category="productos"/>} />
-            <Route path="/zapatillas" element={<Product onAddToCart={handleAddToCart} category="zapatillas"/>} />
-            <Route path="/indumentaria" element={<Product onAddToCart={handleAddToCart} category="indumentaria"/>} />
-            <Route path="/accesorios" element={<Product onAddToCart={handleAddToCart} category="accesorios"/>} />
-            <Route path="/contacto" element={<Contact/>} />
+          <Route path="/zapatillas" element={<Product onAddToCart={handleAddToCart} category="zapatillas"/>} />
+          <Route path="/indumentaria" element={<Product onAddToCart={handleAddToCart} category="indumentaria"/>} />
+          <Route path="/accesorios" element={<Product onAddToCart={handleAddToCart} category="accesorios"/>} />
+          <Route path="/contacto" element={<Contact/>} />
           </Routes>
         </Container>
         <Container>
