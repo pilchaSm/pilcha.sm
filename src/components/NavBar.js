@@ -28,7 +28,12 @@ const NavBar = ({ cartItems = [], removeFromCart }) => {
         </Toolbar>
       </AppBar>
       <AppBar position="static" color="inherit" elevation={0}>
-        <Toolbar sx={{ justifyContent: 'space-between', padding: '10px 0' }}>
+        <Toolbar sx={{ 
+          justifyContent: 'space-between', 
+          padding: '10px 0',
+          paddingRight: '20px',
+          paddingLeft: '20px',
+        }}>
           {isMobile && (
             <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
               <MenuIcon />
