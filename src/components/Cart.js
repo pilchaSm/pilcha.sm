@@ -43,9 +43,10 @@ const ProductCard = ({ product, onAddToCart }) => {
           alt={product.name}
           onError={() => setImgError(true)}
           sx={{
-            height: 200,
-            objectFit: "cover",
+            height: 350,
+            objectFit: "contain",
             borderBottom: "1px solid #e0e0e0",
+            padding: "10px",
           }}
         />
         <CardContent sx={{ flexGrow: 1 }}>

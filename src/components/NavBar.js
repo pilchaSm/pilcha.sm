@@ -34,7 +34,7 @@ const NavBar = ({ cartItems = [], removeFromCart }) => {
               <MenuIcon />
             </IconButton>
           )}
-          <NavMenu isMobile={isMobile} toggleDrawer={toggleDrawer} />
+          <NavMenu isMobile={isMobile} toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
           <IconButton color="inherit" onClick={toggleCartDrawer(true)}>
             <Badge badgeContent={cartItems.length} color="secondary">
               <ShoppingCart />
