@@ -31,7 +31,7 @@ export const parseProductInfo = (productString,url) => {
         console.error("Formato incorrecto:", productString);
         return {
             name: '',
-            sizes: [],
+            sizes: [],  
             price: 0,
             category: '',
             url: '',
@@ -46,12 +46,15 @@ export const parseProductInfo = (productString,url) => {
     const priceString = parts[2]?.replace(/_/g, '').trim() || '0';
     const price = parseFloat(priceString) || 0;
 
+    const formattedPrice = price.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+
     const category =  getCategoryFromName(parts[3])
 
     return {
         name,
         sizes,
-        price,
+        price : formattedPrice,
         category,
         url,
     };
