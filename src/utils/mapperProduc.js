@@ -46,6 +46,10 @@ export const parseProductInfo = (productString,url) => {
     const priceString = parts[2]?.replace(/_/g, '').trim() || '0';
     const price = parseFloat(priceString) || 0;
 
+    if (price === 0 || price < 1000) {
+      return null;
+    }
+    
     const formattedPrice = price.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 
