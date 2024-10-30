@@ -53,7 +53,7 @@ const Contact = () => {
 
         <Grid item>
           <IconButton
-            href="https://www.tiktok.com/@tuUsuarioTikTok"
+            href="https://www.tiktok.com/@pilcha.sm"
             target="_blank"
             rel="noopener noreferrer"
             color="secondary"
